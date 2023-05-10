@@ -1,1 +1,43 @@
-          python-version: '3.10'
+---
+name: Metrics
+"on":
+  # Schedule daily updates
+  schedule: [{cron: "0 0 * * *"}]
+  # (optional) Run workflow manually
+  workflow_dispatch:
+  # (optional) Run workflow when pushing on master/main
+  push:
+    branches:
+        - "main"
+permissions:
+    contents: read
+    discussions: read
+    issues: read
+    id-token: write
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ github.token }}
+  iso_calender:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: iso_calender.svg
+          # You'll need to setup a personal token in your secrets.
+          token: ${{ github.token }}
+          # GITHUB_TOKEN is a special auto-generated token used for commits
+          committer_token: ${{ github.token }}
+
+          # Options
+          user: yaleman
+          template: classic
+          base: ""
+          config_timezone: "Australia/Brisbane"
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: half-year
