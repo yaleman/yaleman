@@ -10,10 +10,12 @@ name: Metrics
     branches:
         - "main"
 permissions:
-    contents: read
+    contents: write
     discussions: read
     issues: read
     id-token: write
+
+
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
