@@ -9,13 +9,15 @@ name: Metrics
   push:
     branches:
         - "main"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
-    contents: write
-    discussions: read
-    issues: read
-    id-token: write
-
-
+  contents: write
+  discussions: read
+  issues: read
+  id-token: write
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
