@@ -18,6 +18,8 @@ permissions:
   discussions: read
   issues: read
   id-token: write
+
+
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
@@ -34,7 +36,7 @@ jobs:
         with:
           filename: iso_calender.svg
           # You'll need to setup a personal token in your secrets.
-          token: ${{ github.token }}
+          token: ${{ secrets.LOWLIGHTER_TOKEN }}
           # GITHUB_TOKEN is a special auto-generated token used for commits
           committer_token: ${{ github.token }}
 
