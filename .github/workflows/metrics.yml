@@ -31,12 +31,14 @@ jobs:
           token: ${{ github.token }}
   iso_calendar:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: lowlighter/metrics@latest
         with:
           filename: iso_calendar.svg
           # You'll need to setup a personal token in your secrets.
-          token: ${{ secrets.LOWLIGHTER_TOKEN }}
+          token: ${{ github.token }}
           # GITHUB_TOKEN is a special auto-generated token used for commits
           committer_token: ${{ github.token }}
 
